@@ -1,0 +1,32 @@
+service: hello-serverless
+app: hello-serverless
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+  stage: prod
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+  people:
+    handler: handler.person
+    events:
+      - http:
+          path: /person
+          method: get
+
+  ping:
+    handler: handler.ping
+    events:
+      - http:
+          path: /ping
+          method: get
+
+plugins:
+  - serverless-offline
